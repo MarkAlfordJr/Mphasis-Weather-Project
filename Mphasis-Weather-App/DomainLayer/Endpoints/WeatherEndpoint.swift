@@ -7,12 +7,15 @@
 
 import Foundation
 
-// https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=f5d41321cdb9903ae018ae5864d86432
+/// enum to handle the different URL combinations, depending on the API call requirements
+// https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={Api Key}
 enum WeatherEndpoint {
     case getWeatherByCoord(lat: String, lon: String)
 }
 
+/// the properties inherited from the endpoint protocol will give out different values, depending on the enum's cases. This allows robust customization of the URL
 extension WeatherEndpoint: Endpoint {
+    
     var scheme: Scheme {
         switch self {
         case .getWeatherByCoord:
@@ -34,12 +37,14 @@ extension WeatherEndpoint: Endpoint {
         }
     }
     
+    
     var params: [URLQueryItem] {
         switch self {
         case .getWeatherByCoord(let lat, let lon):
             return [
                 URLQueryItem(name: "lat", value: "\(lat)"),
                 URLQueryItem(name: "lon", value: "\(lon)"),
+                // be sure to provide your own APIkey to run the app
                 URLQueryItem(name: "appid", value: Constants.appID)
             ]
         }

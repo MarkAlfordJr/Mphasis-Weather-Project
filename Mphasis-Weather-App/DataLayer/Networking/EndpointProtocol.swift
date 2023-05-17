@@ -7,7 +7,7 @@
 
 import Foundation
 
-// https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={Api Key}
+/// protocol needed to provide a template for all future endPoint enums to customize their own URLs for their specific API calls.
 protocol Endpoint {
     var scheme: Scheme {get}
     var host: String {get}

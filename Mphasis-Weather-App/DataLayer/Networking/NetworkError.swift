@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// error enum used within the `NetworkManager` generic func, to document which errors are happening.
 enum NetworkError: Error {
     case decodingError
     case invalidUrl

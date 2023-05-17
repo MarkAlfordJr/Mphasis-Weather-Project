@@ -9,27 +9,22 @@ import Foundation
 import UIKit
 
 class WeatherScreenViewModel {
+    //MARK: properties
     private var weatherService: WeatherServiceProtocol
+    // used for updating the UI with JSON
     var updateUI: ((_ newDataToDisplay: WeatherResponseModel) -> Void)?
-    var weatherImgString = ""
-    var tempFahrenheit =  ""
-    var tempCelsuis = ""
-    var cityName = ""
-    var countryName = ""
-    var descriptionText = ""
     
-    init(weatherService: WeatherServiceProtocol = WeatherService(), weatherString: String = "", tempFahrenheit: String = "", tempCelsuis: String = "", cityName: String = "", countryName: String = "", descriptionText: String = "") {
+    init(weatherService: WeatherServiceProtocol = WeatherService()) {
         self.weatherService = weatherService
-        self.weatherImgString = weatherString
-        self.tempFahrenheit = tempFahrenheit
-        self.tempCelsuis = tempCelsuis
-        self.cityName = cityName
-        self.countryName = countryName
-        self.descriptionText = descriptionText
     }
     
     var geoLocManager = GeolocationManager()
     
+    /**
+     Function that converts the user's string into coordinates to be used in the actual API call. calls the conversion func, then with a completionhandler, FINALLY makes the request with the `getWeather` func below
+     - Parameters:
+        - addressString: the search bar text
+     */
     func convertAddresstoCoordinates(by addressString: String) {
         geoLocManager.forwardGeocoding(address: addressString)
         geoLocManager.updateUI = { [weak self] coordinate in
@@ -38,14 +33,18 @@ class WeatherScreenViewModel {
         }
     }
     
+    /**
+     Function that makes the API call
+     - Parameters:
+        - withAddress: a tuple, used to represent both the coordinates from the converted string value, within the searchBar
+     */
     func getWeather(withAddress: (Double, Double)) {
         Task(priority: .background) {
             let result = await weatherService.getWeather(latitude: String(withAddress.0), longitude: String(withAddress.1))
             switch result {
             case .success(let weatherResponse):
                 DispatchQueue.main.async {
-                    print("response JSON \n\n\n\(weatherResponse)")
-                    // get image
+                    print("response JSON \n\(weatherResponse)")
                     self.updateUI?(weatherResponse)
                 }
             case .failure(let error):
