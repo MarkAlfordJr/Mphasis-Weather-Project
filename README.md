@@ -1,5 +1,5 @@
-# Mphasis-Weather-Project
-Mphasis-Weather-Project, used to demonstrate my skills iOS dev
+# Weather-Project
+Weather-Project, used to demonstrate my skills iOS dev
 
 PROS:
 - MVVM
@@ -13,5 +13,7 @@ There were issues with the lifecycle functions, not being called, i used Xcode 1
 
 
 
-https://github.com/MarkAlfordJr/Mphasis-Weather-Project/assets/40129420/28aec52c-32d5-48bb-9d02-8d76a82f1787
+
+
+https://github.com/MarkAlfordJr/Weather-Project/assets/40129420/c0ff953a-715d-468a-8f51-fc2919b12f77
 
