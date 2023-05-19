@@ -1,14 +1,14 @@
 //
-//  Mphasis_Weather_AppTests.swift
-//  Mphasis-Weather-AppTests
+//  Weather_AppTests.swift
+//  Weather-AppTests
 //
 //  Created by Mark Alford on 5/16/23.
 //
 
 import XCTest
-@testable import Mphasis_Weather_App
+@testable import Weather_App
 
-final class Mphasis_Weather_AppTests: XCTestCase {
+final class Weather_AppTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

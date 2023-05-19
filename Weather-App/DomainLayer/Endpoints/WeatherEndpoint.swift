@@ -45,7 +45,7 @@ extension WeatherEndpoint: Endpoint {
                 URLQueryItem(name: "lat", value: "\(lat)"),
                 URLQueryItem(name: "lon", value: "\(lon)"),
                 // be sure to provide your own APIkey to run the app
-                URLQueryItem(name: "appid", value: Constants.appID)
+                URLQueryItem(name: "appid", value: "enter your own API key")
             ]
         }
     }
